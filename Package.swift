@@ -21,7 +21,7 @@ let package = Package(
                 "Skillz",
                 "KochavaCore",
                 "KochavaTracker",
-                "OpenTelemetryApi",
+                "SkillzOpenTelemetryApi",
                 "GCSDKDomain",
                 "GeoComplySDK",
                 "GeoComplySDK2110"
@@ -41,7 +41,7 @@ let package = Package(
             path: "BinaryTargets/KochavaTracker.xcframework"
         ),
         .binaryTarget(
-            name: "OpenTelemetryApi",
+            name: "SkillzOpenTelemetryApi",
             path: "BinaryTargets/OpenTelemetryApi.xcframework"
         ),
         .binaryTarget(
