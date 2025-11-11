@@ -11,7 +11,6 @@ my $INFOPLIST_PATH = $ENV{'INFOPLIST_PATH'};
 my $CODE_SIGN_ENTITLEMENTS = $ENV{'CODE_SIGN_ENTITLEMENTS'};
 my $PRODUCT_BUNDLE_IDENTIFIER = $ENV{'PRODUCT_BUNDLE_IDENTIFIER'};
 my $TEAM_IDENTIFIER_PREFIX = $ENV{'TeamIdentifierPrefix'};
-
 # escape some troublesome path characters
 $BUILT_PRODUCTS_DIR =~ s!'!\'!g;
 $BUILT_PRODUCTS_DIR =~ s!"!\"!g;
@@ -323,6 +322,32 @@ my $wifiInfoEntitlements = `PlistBuddy -c \'Print :com.apple.developer.networkin
 
 if (!length($wifiInfoEntitlements)) {
     `PlistBuddy -c \"Add :com.apple.developer.networking.wifi-info bool YES\" $CODE_SIGN_ENTITLEMENTS`;
+}
+
+# Add NSSupportsLiveActivities to Info.plist if it doesn't exist
+my $supportsLiveActivities = `PlistBuddy -c 'Print NSSupportsLiveActivities' "$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH"`;
+if (!length($supportsLiveActivities)) {
+    `PlistBuddy -c 'Add :NSSupportsLiveActivities bool YES' "$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH"`;
+}
+
+my $appGroupsEntitlements = `PlistBuddy -c \'Print :com.apple.security.application-groups\' "${CODE_SIGN_ENTITLEMENTS}"`;
+my $appGroupIdentifier = "group.$PRODUCT_BUNDLE_IDENTIFIER";
+if (!length($appGroupsEntitlements)) {
+    # No array exists, create and add
+    `PlistBuddy -c "Add :com.apple.security.application-groups array" $CODE_SIGN_ENTITLEMENTS`;
+    `PlistBuddy -c "Add :com.apple.security.application-groups:0 string $appGroupIdentifier" $CODE_SIGN_ENTITLEMENTS`;
+} else {
+    # Check if the group already exists
+    if ($appGroupsEntitlements !~ /\Q$appGroupIdentifier\E/) {
+        # Find the current count of items in the array
+        my @lines = split /\n/, $appGroupsEntitlements;
+        my $count = 0;
+        foreach my $line (@lines) {
+            $count++ if $line =~ /^\s*\d+\s*:/;
+        }
+        # Add the new group at the next index
+        `PlistBuddy -c "Add :com.apple.security.application-groups:$count string $appGroupIdentifier" $CODE_SIGN_ENTITLEMENTS`;
+    }
 }
 
 # ==== strip bitcode from KochavaCore & KochavaTracker ====
