@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 Skillz. All rights reserved.
 //  http://skillz.com/
 //
-//  Version: 2025.0.19
+//  Version: 2025.0.50
 
 #import <Skillz/SkillzInstance.h>
 #import <Skillz/Skillz+Analytics.h>
