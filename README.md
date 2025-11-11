@@ -70,6 +70,12 @@ Need a quick end-to-end example? The repository now includes `SkillzSampleApp`, 
 
 The sample view controller adopts the `SkillzDelegate` protocol in Swift, so you can copy the same pattern into your own app to control initialization, orientation, and launch events.
 
+## Official Skillz Docs + This Package
+
+- The authoritative gameplay, tournament, and compliance guides remain on [docs.skillz.com](https://docs.skillz.com/). Follow those instructions for dashboard setup, certification, and feature configuration.
+- When the Skillz docs mention downloading or embedding frameworks, replace those manual steps with pointing Xcode/SwiftPM at this package URL and linking the `SkillzBridge` product—this repository already bundles the proprietary binaries.
+- API calls stay identical to the docs: import `SkillzBridge/Skillz.hpp` for C++ usage or `Skillz` for Swift/Objective-C, wire up your delegate, then call the same `Init/Launch` entry points demonstrated in the official guides (see `Examples/SkillzSampleApp` for a working reference).
+
 ## Versioning
 
 - `v1.0.0` – Initial SwiftPM release.
