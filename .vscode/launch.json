@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:Skillz_Swift}",
+            "name": "Debug SkillzSampleApp",
+            "target": "SkillzSampleApp",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug SkillzSampleApp"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:Skillz_Swift}",
+            "name": "Release SkillzSampleApp",
+            "target": "SkillzSampleApp",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release SkillzSampleApp"
+        }
+    ]
+}
