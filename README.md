@@ -80,6 +80,7 @@ The sample view controller adopts the `SkillzDelegate` protocol in Swift, so you
 
 - `v1.0.0` – Initial SwiftPM release.
 - `v1.0.1` – Renamed OpenTelemetry target (`SkillzOpenTelemetryApi`) to avoid conflicts with other packages.
+- `v1.1.0` – Bundled Skillz SDK binaries updated to version 2025.0.50 (includes new simulator/device artifacts).
 
 Use semantic version tags to consume future updates.
 
