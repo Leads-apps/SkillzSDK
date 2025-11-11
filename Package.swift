@@ -5,12 +5,16 @@ import PackageDescription
 let package = Package(
     name: "SkillzSDK",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v15)
     ],
     products: [
         .library(
             name: "SkillzBridge",
             targets: ["SkillzBridge"]
+        ),
+        .executable(
+            name: "SkillzSampleApp",
+            targets: ["SkillzSampleApp"]
         )
     ],
     dependencies: [],
@@ -27,6 +31,16 @@ let package = Package(
                 "GeoComplySDK2110"
             ],
             publicHeadersPath: "include"
+        ),
+        .executableTarget(
+            name: "SkillzSampleApp",
+            dependencies: [
+                "Skillz"
+            ],
+            path: "Examples/SkillzSampleApp/SkillzSampleApp",
+            swiftSettings: [
+                .define("SKILLZ_SAMPLE_APP", .when(platforms: [.iOS]))
+            ]
         ),
         .binaryTarget(
             name: "Skillz",

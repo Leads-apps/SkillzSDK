@@ -60,6 +60,16 @@ targets: [
 
 The `SkillzBridge` target automatically links the Skillz, Kochava, OpenTelemetry, and GeoComply binaries when added to your app target; no manual framework embedding is required.
 
+## Sample iOS App
+
+Need a quick end-to-end example? The repository now includes `SkillzSampleApp`, a UIKit host with a single “Launch Skillz” button wired to the SDK:
+
+1. Open the package in Xcode (`File > Open Package…`) and pick the `SkillzSampleApp` scheme.
+2. Edit the placeholder game id inside `Examples/SkillzSampleApp/SkillzSampleApp/SkillzSampleAppDelegate.swift` so it matches your project.
+3. Build & run the target on an iOS device or simulator, then tap **Launch Skillz** to present the Skillz experience.
+
+The sample view controller adopts the `SkillzDelegate` protocol in Swift, so you can copy the same pattern into your own app to control initialization, orientation, and launch events.
+
 ## Versioning
 
 - `v1.0.0` – Initial SwiftPM release.
