@@ -81,6 +81,7 @@ The sample view controller adopts the `SkillzDelegate` protocol in Swift, so you
 - `v1.0.0` – Initial SwiftPM release.
 - `v1.0.1` – Renamed OpenTelemetry target (`SkillzOpenTelemetryApi`) to avoid conflicts with other packages.
 - `v1.1.0` – Bundled Skillz SDK binaries updated to version 2025.0.50 (includes new simulator/device artifacts).
+- `v1.1.1` – Added a privacy manifest (`PrivacyInfo.xcprivacy`) that declares the data types collected by the Skillz/Kochava/GeoComply stack.
 
 Use semantic version tags to consume future updates.
 
@@ -88,3 +89,4 @@ Use semantic version tags to consume future updates.
 
 - All binary frameworks were converted to XCFrameworks for compatibility with current Apple Silicon/Xcode toolchains.
 - If you obtain updated binaries from Skillz or partners, replace the corresponding `BinaryTargets/*.xcframework` bundle and bump the package version.
+- Keep the package-level `Sources/SkillzBridge/PrivacyInfo.xcprivacy` in sync with any new SDK capabilities and update your app’s privacy report before submitting to the App Store.
